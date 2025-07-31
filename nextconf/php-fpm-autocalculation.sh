@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# php-fpm-autocalculation script — Calculates average memory per process and PM values based on the actual Hardware and RAM usage.
+# php-fpm-autocalculation script — Calculates average memory per process and PM values based on the actual Hardware and RAM usage + %10 RAM buffer.
 # Make sure your php-fpm service is running in your server before executing this script.
 
 set -euo pipefail
@@ -23,7 +23,8 @@ AVG_PROC_MB=$(( AVG_RSS_KB / 1024 ))
 RESERVE_MB=1024
 TOTAL_RAM_MB=$(awk '/MemTotal/ {print int($2/1024)}' /proc/meminfo)
 CPU_CORES=$(nproc)
-USABLE_MB=$(( TOTAL_RAM_MB - RESERVE_MB ))
+BUFFER=$(( TOTAL_RAM_MB / 10 ))
+USABLE_MB=$(( TOTAL_RAM_MB - RESERVE_MB - BUFFER ))
 (( USABLE_MB < AVG_PROC_MB )) && echo "Warning: usable RAM (${USABLE_MB}MB) < avg proc (${AVG_PROC_MB}MB)" >&2
 
 # 4) Calculate pm.* values
