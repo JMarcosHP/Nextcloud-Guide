@@ -46,15 +46,16 @@ cat <<EOF
 ; Detected process      : $PF_NAME
 ; Avg memory per process: ${AVG_PROC_MB} MB
 
-; === Dynamic mode ===
+; === Dynamic mode (variable load) ===
 pm = dynamic
 pm.max_children     = $MAX_CHILDREN
 pm.start_servers    = $START_SERVERS
 pm.min_spare_servers= $PM_MIN_SPARE
 pm.max_spare_servers= $PM_MAX_SPARE
 
-; === Static mode ===
+; === Static mode (high performance) ===
 pm = static
 pm.max_children     = $MAX_CHILDREN
 ; In static mode all children spawn at startup, no spare settings.
+; Static mode provides better performance but uses more resources.
 EOF
