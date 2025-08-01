@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# php-fpm-autocalculation script — Calculates average memory per process and PM values based on the actual Hardware and RAM usage + %10 RAM buffer.
+# php-fpm-autocalculation script — Calculates average memory per process and PM values based on the actual Hardware CPU core count and RAM usage + %10 RAM buffer.
 # Make sure your php-fpm service is running in your server before executing this script.
 
 set -euo pipefail
