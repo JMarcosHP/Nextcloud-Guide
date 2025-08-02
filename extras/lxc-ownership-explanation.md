@@ -1,4 +1,4 @@
-# LET'S CLARIFY THE LXC UNPRIVILEGED OWNESHIP
+# LET'S CLARIFY THE LXC UNPRIVILEGED OWNERSHIP
 
 For this guide we will use an unprivileged LXC container. So for every local mountpoint on the Proxmox Host, you need to map the right uid and gid ownership.
 
