@@ -15,7 +15,7 @@
 
 ## Why upgrade PHP?
 
- You upgraded your Nextcloud Server and now your current PHP installed hits the deprecation notice.
+- You upgraded your Nextcloud Server and now your current PHP installed hits the deprecation notice.
 - You need a new feature or Nextcloud complains about a required feature.
 - Your current PHP has a critical vulnerability and newer versions have the corresponding patch.
 
