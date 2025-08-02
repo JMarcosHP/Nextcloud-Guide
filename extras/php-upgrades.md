@@ -25,7 +25,7 @@ It's recommended to migrate only when you hit the deprecation notice in Nextclou
 
 ## Which version to migrate to?
 
-If your PHP version gets deprecated, it's recommended to do the jumb to the latest PHP runtime supported in Nextcloud at that moment (assuming you are running the latest Nextcloud release) before upgrading your Nextcloud instance. You can check it in the Nextcloud [requirements.](https://docs.nextcloud.com/server/latest/admin_manual/installation/system_requirements.html#:~:text=with%20php%2Dfpm-,PHP%20Runtime)
+If your PHP version gets deprecated, it's recommended to do the jumb to the latest PHP runtime supported in Nextcloud at that time (assuming you are running the latest Nextcloud release) before upgrading your Nextcloud instance. You can check it in the Nextcloud [requirements.](https://docs.nextcloud.com/server/latest/admin_manual/installation/system_requirements.html#:~:text=with%20php%2Dfpm-,PHP%20Runtime)
 
 By doing this, you reduce the work and time spent maintaining your Nextcloud server.
 
