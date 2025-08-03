@@ -31,7 +31,7 @@ Uncomment these lines and set your Nginx Proxy Manager IP instead of `0.0.0.0`:
 
     # Reverse proxy settings, uncomment the following lines if you want to use a proxy.
     real_ip_header X-Forwarded-For;
-    set_real_ip_from 0.0.0.0/24;  # Restrict to your proxy IP
+    set_real_ip_from 0.0.0.0;  # Restrict to your proxy IP
 
 Nextcloud Server Configuration:
 Add the following configuration to `/var/www/nextcloud/config/config.php`
@@ -40,17 +40,17 @@ Add the following configuration to `/var/www/nextcloud/config/config.php`
     array (
       0 => '127.0.0.1',
       1 => 'localhost',
-      2 => '192.168.1.9', // Edit according to your Nextcloud LXC external IP.
+      2 => '192.168.1.9', // Adjust according to your Nextcloud LXC external IP.
       3 => '::1',
-      4 => 'yourdomain.example', // Edit according to your domain.
+      4 => 'yourdomain.example', // Adjust according to your domain.
     ),
     'trusted_proxies' =>
     array (
       0 => '127.0.0.1',
       1 => '::1',
-      2 => '192.168.1.6', // Edit according to your Nginx Proxy Manager IP.
+      2 => '192.168.1.6', // Adjust according to your Nginx Proxy Manager IP.
     ),
-    'overwrite.cli.url' => 'https://yourdomain.example', // Edit according to your domain.
+    'overwrite.cli.url' => 'https://yourdomain.example', // Ajust according to your domain.
 
 Restart Nginx and PHP:
 
