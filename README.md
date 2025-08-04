@@ -69,38 +69,51 @@ Now get the mountpoint of the dataset with:
 
 We need this path to mount it in the LXC later.
 
+<br/><br/>
+
 ### CREATING THE LXC CONTAINER
 
-First download the Debian 12 standard template:
-[CT-TEMPLATE]
+First download the latest Debian standard template:
+
+<img width="903" height="603" alt="image" src="https://github.com/user-attachments/assets/38140b95-58e8-4c6c-b2ba-0f7b8598e1cd" /><br/><br/><br/>
 
 Now Lets Create the LXC:
-[CT1]
-Set a hostname, ID number, a password for the root user.
-[CT2]
-Select the Debian template from your storage.
 
-[CT3]
-Choose your storage where the LXC will be saved, set 64GB for disk size, for mount options select: discard (only if your storage is SSD),noatime,lazytime.
+<img width="727" height="544" alt="Captura desde 2025-07-30 17-03-25" src="https://github.com/user-attachments/assets/d00ad0f9-378b-41ee-9e8e-0c78cb1ddd82" />
 
-[CT4]
-Set the desired amount of CPU cores, in this case I'll set it to 8.
+Set a hostname, ID number and a password for the root user.<br/><br/><br/>
 
-[CT5]
-Set at least 4GB of ram and 1GB for swap.
+<img width="724" height="537" alt="Captura desde 2025-07-30 12-38-00" src="https://github.com/user-attachments/assets/15158549-cf80-443c-9c67-1978b402abe4" />
 
-[CT6]
-For network, assign a static IPV4 address with its gateway. If your ISP provides a fully working IPv6 select SLAAC, if not, just leave it static.
+Select the Debian template from your storage.<br/><br/><br/>
 
-[CT7]
-For DNS you can use the host settings, or another dns provider like `8.8.8.8,1.1.1.1`
+<img width="724" height="537" alt="Captura desde 2025-07-30 12-37-52" src="https://github.com/user-attachments/assets/42bc5290-42e6-4ca3-8b87-7eba8daf743b" />
 
-[CT8]
-Finish the container creation.
+Choose the storage where the LXC will be saved, set 64GB for disk size, for mount options select: discard (only if your storage is SSD),noatime,lazytime.<br/><br/><br/>
+
+<img width="724" height="537" alt="Captura desde 2025-07-30 12-39-11" src="https://github.com/user-attachments/assets/e52ca95b-f8b4-4f94-a6ca-85b43dbdc7d4" />
+
+Set the desired amount of CPU cores, in this case I'll set it to 8.<br/><br/><br/>
+
+<img width="724" height="537" alt="Captura desde 2025-07-30 12-39-16" src="https://github.com/user-attachments/assets/dbb339d4-fa66-4248-91e0-c73e17156fa9" />
+
+Set at least 4GB of ram and 1GB for swap.<br/><br/><br/>
+
+<img width="724" height="537" alt="Captura desde 2025-07-30 12-39-44" src="https://github.com/user-attachments/assets/26907634-c803-4d7c-a94e-220da2a503f5" />
+
+For network, assign a static IPV4 address with its gateway. If your ISP provides a fully working IPv6 select SLAAC, if not, just leave it static.<br/><br/><br/>
+
+<img width="724" height="537" alt="Captura desde 2025-07-30 12-41-37" src="https://github.com/user-attachments/assets/5580b9f0-ff75-4449-a68f-bba56b60bcd8" />
+
+For DNS you can use the host settings, or another dns provider like `8.8.8.8,1.1.1.1`<br/><br/><br/>
+
+<img width="724" height="537" alt="Captura desde 2025-07-30 12-41-41" src="https://github.com/user-attachments/assets/45bd3ca9-226d-42c3-9ae7-738a3c5e2945" />
+
+Finish the container creation.<br/><br/><br/>
 
 Now is the time to add the mountpoint for the Nextcloud data directory storage, go to your Proxmox shell and execute:
 
-    zfs get mountpoint yourpool/datasetname
+    zfs get mountpoint disk2/ncdata
     pct set 110 -mp0 /srv/nas/disk2/ncdata,mp=/mnt/ncdata
     # Adjust the container ID and mount path to yours.
     # You can bind mount another folders as needed.
@@ -108,23 +121,28 @@ Now is the time to add the mountpoint for the Nextcloud data directory storage, 
 Now set the ownership for data folder:
 
     chown -R 100033:100033 /srv/nas/disk2/ncdata
+<br/><br/><br/>
+**(OPTIONAL)** GPU Passthrough for video transcoding.
 
-**(OPTIONAL)** GPU Passthrough for video transcoding:
-[Pass1]
-Go to your Nextcloud container resources section and add a device passthrough
+<img width="304" height="97" alt="Captura desde 2025-07-29 21-03-38" src="https://github.com/user-attachments/assets/11774560-9400-4034-b81d-c97d556f5829" />
+
+Go to your Nextcloud container resources section and add a device passthrough.<br/><br/><br/>
 
 In the Proxmox Shell get the card number with:
 
     ls /dev/dri
+<br/><br/><br/>
+<img width="457" height="201" alt="Captura desde 2025-07-30 12-16-00" src="https://github.com/user-attachments/assets/7fa82c38-58a3-4e3f-84b1-31ad57c2bf49" />
 
-[Pass2]
-For the path: `/dev/dri/renderD128`, set `GID 104` (render group in Debian), access mode `0666`.
+For the path: `/dev/dri/renderD128`, set `GID 104` (render group in Debian), access mode `0666`.<br/><br/><br/>
 
-[Pass3]
+<img width="457" height="201" alt="Captura desde 2025-07-30 12-16-33" src="https://github.com/user-attachments/assets/bc0f4cb4-4e4d-46bb-86cb-e620be50dd4f" />
+
 Add another device with the card number, set `GID 44` (video group), access mode `0666`.
 
 With all of this, we are ready to Power ON and setup the Container.
 
+<br/><br/>
 ### CONTAINER SETUP
 First enter the container and setup your timezone and language locale:
 
@@ -378,6 +396,7 @@ Check syntax and reload nginx:
 
 ### Nextcloud Server Setup:
 Create the Nextcloud database and user:
+
 *NOTE: Use your own strong password.*
 
     sudo -u postgres psql <<EOF
@@ -402,9 +421,10 @@ Download & extract Nextcloud server:
 
 
 ### Begin the Nextcloud installation
-Open your web browser and go to: http://[LXC IP]
+Open your web browser and go to: http://[LXC_EXTERNAL_IP]
 
-[NCSETUP1]
+<img width="717" height="961" alt="Captura desde 2025-07-31 13-59-56" src="https://github.com/user-attachments/assets/80fa2660-449c-4cc5-8151-e6204ec1c0d4" />
+
 Set a name and password for the nextcloud admin account, for the database use the same name, user and password created in this step.
 
 For the Nextcloud data dir, set the configured mountpoint of your ZFS dataset, in this case `/mnt/ncdata`
@@ -414,24 +434,33 @@ for the port just leave it blank.
 
 And click Install.
 
-[NCSETUP2]
+<br/><br/><br/>
+<img width="708" height="961" alt="Captura desde 2025-07-31 14-01-05" src="https://github.com/user-attachments/assets/5a8dbbbe-0741-4d94-ae87-70eec35ba6fb" />
+
 Select apps as needed, or click Skip to not install anything.
 
-[NCSETUP3]
+<br/><br/><br/>
+<img width="1879" height="961" alt="Captura desde 2025-07-31 14-01-38" src="https://github.com/user-attachments/assets/0c25ad0a-bd57-4dfa-9c9a-0d4573b79551" />
+
 And there we go!
 
+<br/><br/>
 ### Nextcloud post-installation adjustements:
 Go to the administration settings to see what we need to adjust/fix.
-[NCADJ1]
+<img width="1535" height="683" alt="Captura desde 2025-07-31 14-05-27 (Editado)" src="https://github.com/user-attachments/assets/79a2c356-1890-453f-8110-2ac2ec544913" />
 
+<br/><br/><br/>
 Fix database index:
 
     sudo -u www-data php -f /var/www/nextcloud/occ db:add-missing-indices
     sudo -u www-data php -f /var/www/nextcloud/occ maintenance:repair --include-expensive
 
+<br/><br/>
 Configuring Background Jobs:
 Go to basic settings and select Cron.
-[NCCRON]
+
+<img width="1085" height="398" alt="Captura desde 2025-07-31 14-07-28" src="https://github.com/user-attachments/assets/b8860656-b710-4665-92cc-b777be12fab4" />
+
 Then open your LXC terminal and add the cronjob:
 
      sudo crontab -u www-data -e
@@ -447,14 +476,17 @@ Then open your LXC terminal and add the cronjob:
     # Disable Maintenance mode
     0 6 * * * bash /opt/nextconf/set-maintenance.sh off
 
+<br/><br/>
 For the email configuration, you can use your own gmail account following this [video](https://www.youtube.com/watch?v=7NqL9ccYOlk&t).
 
 Or if you have a web domain you can use an email provider, I recommend you the free tier of Mailjet. Please check this [guide](https://franzramadhan.dev/blog/01-free-own-domain-email-using-cloudflare-mailjet/) for more details.
 
 Once you got your mailjet credentials you can add it to nextcloud like this:
-[NCMAIL]
+<img width="1113" height="477" alt="Captura desde 2025-07-29 22-28-31" src="https://github.com/user-attachments/assets/e1f62ac1-7f76-414b-b983-a5cc8c0fa039" />
 
-Adding redis, memcached and apcu support:
+<br/><br/><br/>
+**Adding redis, memcached and apcu support.**
+
 Edit `/var/www/nextcloud/config/config.php` with the following:
 
     'memcache.local' => '\\OC\\Memcache\\APCu',
@@ -577,19 +609,18 @@ Apply the configuration with:
 
     sudo systemctl restart nginx php8.4-fpm redis-server
 
-After setting config.php your server instance will look like this:
-[ncfinish]
-
 **CONGRATULATIONS!**, now your Nextcloud server is fully operational. 
 
 If you want to configure the proxy for selfhosting, please check this [guide](https://github.com/JMarcosHP/Nextcloud-Guide/blob/main/extras/proxy-config.md#nextcloud-configuration). 
 
-
+<br/><br/>
 ### Adding Push Notifications support
 First enable notifications, open a browser and login with the admin account.
 Go to the Administration settings => Notifications
 And set this configuration:
-[ncnotify]
+
+<img width="548" height="292" alt="Captura desde 2025-07-29 23-26-49" src="https://github.com/user-attachments/assets/b9626278-cd48-404e-8628-673dac4df6cb" />
+
 
 Install the notify_push app with:
 
@@ -630,7 +661,7 @@ This repository includes a script to test notifications:
 
 You will see a notification of the browser.
 
-
+<br/><br/>
 ### Setup automatic preview generation
 Install the previews app:
 
@@ -644,6 +675,7 @@ Add the cronjob:
     # Nextcloud Previews
     */5 * * * * /opt/nextconf/previews.sh
 
+<br/><br/>
 ### Memories app setup
 
 Install the memories app:
@@ -657,14 +689,21 @@ Download the planet database:
 Now go to the configuration page and check if everything is OK.
 
 Recommended configuration for memories:
-[NCMEMORIES1]
-[NCMEMORIES2]
-[NCMEMORIES3]
-[NCMEMORIES4]
-(Only with GPU Passthrough, enable VA-API, for nvidia you need to install the corresponding driver with: sudo apt install nvidia-driver-xxx)
+
+<img width="1375" height="864" alt="Captura desde 2025-07-31 18-59-29" src="https://github.com/user-attachments/assets/4911d88c-ecfc-44ea-8169-f6ac0bceb4fb" />
+
+<img width="1375" height="888" alt="Captura desde 2025-07-31 18-59-59" src="https://github.com/user-attachments/assets/af1ee67d-d9e2-4d9c-b6ad-79ddfac840f6" />
+
+<img width="1372" height="897" alt="Captura desde 2025-07-31 19-00-06" src="https://github.com/user-attachments/assets/a80d7eff-af3a-45c9-8d10-a49da427e814" />
+
+<img width="1372" height="888" alt="Captura desde 2025-07-31 19-00-23" src="https://github.com/user-attachments/assets/efec8d27-4b91-4246-951d-3a85449fe29f" />
+
+<img width="1362" height="890" alt="Captura desde 2025-07-31 19-00-39" src="https://github.com/user-attachments/assets/882658ff-fe44-4982-9e83-b18640bb3720" />
+
+(Only with GPU Passthrough, enable VA-API, for nvidia you need to install the corresponding driver with: sudo apt install nvidia-driver)
 
 ## Extras
-Some usefully guides to complement your fresh Nextcloud instance.
+Some usefull guides to complement your fresh Nextcloud instance.
 
 - [Selfhost/Proxy/HTTPS/SSL Support with Nginx Proxy Manager LXC](https://github.com/JMarcosHP/Nextcloud-Guide/blob/main/extras/proxy-config.md)
 - [How to install OnlyOffice Document Server 9](https://github.com/JMarcosHP/Nextcloud-Guide/blob/main/extras/onlyoffice-setup.md)
@@ -672,4 +711,5 @@ Some usefully guides to complement your fresh Nextcloud instance.
 - [How to migrate to a newer PHP version](https://github.com/JMarcosHP/Nextcloud-Guide/blob/main/extras/php-upgrades.md)
 - [How to migrate to a newer PostgreSQL version](https://github.com/JMarcosHP/Nextcloud-Guide/blob/main/extras/postgresql-upgrades.md)
 - [How to upgrade Debian to a newer release](https://github.com/JMarcosHP/Nextcloud-Guide/blob/main/extras/debian-release-upgrades.md)
+- How to upgrade Nextcloud (work in progress)
 - How to make a LXC Snapshot Backup in Proxmox (work in progress)
