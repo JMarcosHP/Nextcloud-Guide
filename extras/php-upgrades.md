@@ -49,48 +49,20 @@ Change `X.Y` to the desired PHP version, please don't use the metapackages:
 
 ### STEP 4:
 Migrate configuration.
-Compare the settings rather than blindly copying old `php.ini/www.conf` files.
-It is recommended to only set the configuration you modified for the nextcloud/redis setup in `/etc/php/X.Y/fpm/php.ini`, these are the configuration parameters provided by this guide:
 
-    output_buffering = off
-    max_execution_time = 86400
-    default_socket_timeout = 86400 # Always set the same value of max_execution_time
-    memory_limit = 1024M # Adjust if you need more.
-    post_max_size = 16G # Adjust if you need more.
-    upload_max_filesize = 16G # Always set the same value of post_max_size
-    session.save_handler = redis
-    session.save_path = "unix:///run/redis/redis-server.sock?auth=yourredispassword&database=1" # Make sure your password doesn't contain "&" character as it's reserved to indicate the database index. 
-    session.serialize_handler = igbinary
-    redis.session.locking_enabled = 1
-    redis.session.lock_retries = -1
-    redis.session.lock_wait_time = 10000
-    opcache.enable=1
-    opcache.jit=1255
-    opcache.jit_buffer_size=8M
-    opcache.memory_consumption=256
-    opcache.interned_strings_buffer=64
-    opcache.max_accelerated_files=10000
-    opcache.revalidate_freq=2
-    opcache.save_comments=1
-    apc.serializer = igbinary
-    apc.shm_size = 128M
+This repository provides configuration templates for PHP-FPM and pools, if you already configured these templates simply copy them to your new PHP version folder:
 
-And for `/etc/php/X.Y/fpm/pool.d/www.conf` just set the calculated pm values from the older `www.conf` file:
+    sudo cp -r /opt/nextconf/nextcloud.ini /etc/php/X.Y/mods-available 
+    sudo cp -r /opt/nextconf/z-nextcloudpool.conf /etc/php/fpm/pool.d/
 
-    pm = dynamic # Or static
-    pm.max_children = 
-    pm.start_servers = 
-    pm.min_spare_servers = 
-    pm.max_spare_servers =
+Then load the configuration, restart the new PHP service and see if it's running without issues:
 
-Uncomment the following line:
-
-    ;env[PATH] = /usr/local/bin:/usr/bin:/bin
-
-Then restart the new PHP service and see if it's running without issues:
-
+    sudo phpenmod -v X.Y -s fpm nextcloud
     sudo systemctl restart phpX.Y-fpm.service
     sudo systemctl status phpX.Y-fpm.service
+
+However, if you don't have these templates, you can download the nextcloud.ini template [here](), and the z-nextcloudpool.conf [here]() for the pool.
+Adjust them with your current values and apply the configuration.
 
 ### STEP 5:
 Set the newer PHP as default.
