@@ -27,7 +27,8 @@
 - How to migrate to a newer PHP version.
 - How to migrate to a newer PostgreSQL version.
 - How to upgrade Debian to a newer release.
-- How to make a LXC Snapshot Backup in Proxmox
+- How to upgrade Nextcloud.
+- How to make a LXC Snapshot Backup in Proxmox.
 
 **This guide assumes you have:**
 - A working Proxmox node.
@@ -722,5 +723,5 @@ Some usefull guides to complement your fresh Nextcloud instance.
 - [How to migrate to a newer PHP version](https://github.com/JMarcosHP/Nextcloud-Guide/blob/main/extras/php-upgrades.md)
 - [How to migrate to a newer PostgreSQL version](https://github.com/JMarcosHP/Nextcloud-Guide/blob/main/extras/postgresql-upgrades.md)
 - [How to upgrade Debian to a newer release](https://github.com/JMarcosHP/Nextcloud-Guide/blob/main/extras/debian-release-upgrades.md)
-- How to upgrade Nextcloud (work in progress)
+- [How to upgrade Nextcloud](https://github.com/JMarcosHP/Nextcloud-Guide/blob/main/extras/nextcloud-upgrades.md)
 - How to make a LXC Snapshot Backup in Proxmox (work in progress)
