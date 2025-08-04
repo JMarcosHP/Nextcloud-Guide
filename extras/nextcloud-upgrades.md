@@ -13,7 +13,7 @@
 
 ## Why upgrade Nextcloud?
 
- - Your current instance is reaching EOL.
+- Your current instance is reaching EOL.
 - You need a new Nextcloud feature.
 - You need a patch or a performance improvement offered by the next release.
 
@@ -66,7 +66,7 @@ If you are upgrading to a new major release, please check the [Nextcloud Admin M
 
 Set your Nextcloud instance to maintenance mode:
 
-    sudo -u www-data /opt/nextconf/maintenance-mode.sh --on
+    sudo -u www-data /opt/nextconf/cron/maintenance-mode.sh --on
 
 ### STEP 4:
 
