@@ -9,6 +9,7 @@
 	+ [STEP 3](#step-3)
 	+ [STEP 4](#step-4)
 	+ [STEP 5](#step-5)
+ 	+ [STEP 6](#step-6) 
 
 ## Why upgrade Nextcloud?
 
@@ -96,3 +97,6 @@ Fix the database layout:
     sudo -E -u www-data php -f /var/www/nextcloud/occ db:add-missing-indices
     sudo -E -u www-data php -f /var/www/nextcloud/occ maintenance:repair --include-expensive
     sudo -E -u www-data php -f /var/www/nextcloud/occ db:add-missing-primary-keys
+
+### STEP 6:
+Now go to the administration page in Nextcloud and see any warning or configuration that needs your attention.
