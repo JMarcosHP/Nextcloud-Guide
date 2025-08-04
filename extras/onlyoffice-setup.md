@@ -133,4 +133,4 @@ And paste your JWT token + Authorization header, then click Save.
 
 **CONGRATULATIONS!** Your OnlyOffice Document Server is fully operational and integrated with Nextcloud.
 
-If you want to configure the proxy for selfhosting, please check this guide.
+If you want to configure the proxy for selfhosting, please check this [guide](https://github.com/JMarcosHP/Nextcloud-Guide/blob/main/extras/proxy-config.md#onlyoffice-document-server-configuration).
