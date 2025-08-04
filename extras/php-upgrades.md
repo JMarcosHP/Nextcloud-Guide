@@ -39,7 +39,7 @@ Make a snapshot of your LXC Container, if anything goes wrong, just restore the 
 ### STEP 2:
 Enable maintenance mode in Nextcloud.
 
-    sudo -u www-data php -f /opt/nextconf/maintenance-mode.sh --on
+    sudo -u www-data php -f /opt/nextconf/cron/maintenance-mode.sh --on
 
 ### STEP 3:
 Install the new PHP packages and extensions.
@@ -52,8 +52,8 @@ Migrate configuration.
 
 This repository provides configuration templates for PHP-FPM and pools, if you already configured these templates simply copy them to your new PHP version folder:
 
-    sudo cp -r /opt/nextconf/nextcloud.ini /etc/php/X.Y/mods-available 
-    sudo cp -r /opt/nextconf/z-nextcloudpool.conf /etc/php/fpm/pool.d
+    sudo cp -r /opt/nextconf/php/nextcloud.ini /etc/php/X.Y/mods-available 
+    sudo cp -r /opt/nextconf/php/z-nextcloudpool.conf /etc/php/fpm/pool.d
 
 Then load the configuration, restart the new PHP service and see if it's running without issues:
 
@@ -80,7 +80,7 @@ You can keep many PHP versions as you need. Nginx configuration is needed only i
 ### STEP 6:
 Disable the maintenance mode in Nextcloud and check if the new PHP version installed is detected and working as expected, if not, double check your PHP settings and the default socket and binary used. 
 
-    sudo -u www-data php -f /opt/nextconf/maintenance-mode.sh --off
+    sudo -u www-data php -f /opt/nextconf/cron/maintenance-mode.sh --off
 
 ### STEP 7 (Optional):
 
