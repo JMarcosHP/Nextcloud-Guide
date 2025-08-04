@@ -35,7 +35,7 @@
 - At least 1 ZFS Pool or LVM disk to storage the LXC. (2 are recomended, 1 to save the LXC itself and 1 to store the nextcloud data).
 - Intermediate Linux, Shell, Unix Permission Skills.
 - For selfhosting, a proxy host, a fully working domain pointing to your public IP and a DDNS service, the 443 port forwarded in your router and pointing to the proxy host. (This guide only covers [Nginx Proxy Manager LXC](https://community-scripts.github.io/ProxmoxVE/scripts?id=nginxproxymanager) proxy host settings).
-- At least 4GB Ram free, 4 cores, 64Gb free space for the LXC.
+- At least 4GB Ram free, 4 cores, 64GB free space for the LXC.
 - Integrated or dedicated graphics card for video transcoding, otherwise, stick to ffmpeg and CPU transcoding. (Intel/AMD preferred, but you can install nvidia drivers).
 
 **Table of Contents:**
