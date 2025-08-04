@@ -53,7 +53,7 @@ Migrate configuration.
 This repository provides configuration templates for PHP-FPM and pools, if you already configured these templates simply copy them to your new PHP version folder:
 
     sudo cp -r /opt/nextconf/nextcloud.ini /etc/php/X.Y/mods-available 
-    sudo cp -r /opt/nextconf/z-nextcloudpool.conf /etc/php/fpm/pool.d/
+    sudo cp -r /opt/nextconf/z-nextcloudpool.conf /etc/php/fpm/pool.d
 
 Then load the configuration, restart the new PHP service and see if it's running without issues:
 
@@ -61,7 +61,7 @@ Then load the configuration, restart the new PHP service and see if it's running
     sudo systemctl restart phpX.Y-fpm.service
     sudo systemctl status phpX.Y-fpm.service
 
-However, if you don't have these templates, you can download the nextcloud.ini template [here](), and the z-nextcloudpool.conf [here]() for the pool.
+However, if you don't have these templates, you can download the nextcloud.ini template [here](https://github.com/JMarcosHP/Nextcloud-Guide/blob/main/nextconf/nextcloud.ini), and the z-nextcloudpool.conf [here](https://github.com/JMarcosHP/Nextcloud-Guide/blob/main/nextconf/z-nextcloudpool.conf) for the pool.
 Adjust them with your current values and apply the configuration.
 
 ### STEP 5:
