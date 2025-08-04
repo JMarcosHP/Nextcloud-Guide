@@ -27,7 +27,7 @@ Configure Nginx web server:
 For the web server configuration, we only provide configuration files for Nginx in http and https variants since Nginx is used in the main stack for Nextcloud.
 
     git clone https://github.com/JMarcosHP/Nextcloud-Guide.git
-    sudo cp -r ~/Nextcloud-Guide/nextconf/adminer-http.conf /etc/nginx/sites-available # Or adminer-https.conf
+    sudo cp -r ~/Nextcloud-Guide/nextconf/nginx/adminer-http.conf /etc/nginx/sites-available # Or adminer-https.conf
     sudo ln -s /etc/nginx/sites-available/adminer-http.conf /etc/nginx/sites-enabled
     sudo nginx -t
     sudo systemctl reload nginx
