@@ -715,7 +715,7 @@ Recommended configuration for memories:
 (Only with GPU Passthrough, enable VA-API, for nvidia you need to install the corresponding driver with: sudo apt install nvidia-driver)
 
 ## Extras
-Some usefull guides to complement your fresh Nextcloud instance.
+Some useful guides to complement your fresh Nextcloud instance.
 
 - [Selfhost/Proxy/HTTPS/SSL Support with Nginx Proxy Manager LXC](https://github.com/JMarcosHP/Nextcloud-Guide/blob/main/extras/proxy-config.md)
 - [How to install OnlyOffice Document Server 9](https://github.com/JMarcosHP/Nextcloud-Guide/blob/main/extras/onlyoffice-setup.md)
