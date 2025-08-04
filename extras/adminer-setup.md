@@ -36,6 +36,7 @@ For the web server configuration, we only provide configuration files for Nginx 
 Test Adminer:
 
 Open a web browser and go to http://[LXC_EXTERNAL_IP]:8082
+
 Select PostgreSQL and set the credentials for Nextcloud database or OnlyOffice database.
 
 <img width="558" height="296" alt="Captura desde 2025-08-03 15-16-37" src="https://github.com/user-attachments/assets/ef4bacb6-e5d7-4c41-8ce0-b3c79b4bab5c" />
