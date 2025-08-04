@@ -178,6 +178,7 @@ Switch to the new user:
 
 Now we will use ncadmin for every command in this guide, or you can stick with the root user.
 
+<br/><br/>
 ### Preparing the necessary stuff:
 
 Install a firewall:
@@ -193,7 +194,7 @@ Allow the required ports in ufw for this setup:
 
 In this guide we will use external repositories to facilitate upgrading versions of any part of the stack, but you can compile it from source or use the provided packages from the distribution.
 
-Add Sury's(https://deb.sury.org/#debian-dpa) Nginx & PHP repositories, provided by an Official Debian Developer:
+Add [Sury's](https://deb.sury.org/#debian-dpa) Nginx & PHP repositories, provided by an Official Debian Developer:
 
     sudo apt install -y lsb-release ca-certificates curl
     sudo curl -sSLo /tmp/debsuryorg-archive-keyring.deb https://packages.sury.org/debsuryorg-archive-keyring.deb
@@ -254,6 +255,7 @@ Enable and Start the necessary services:
 
     sudo systemctl enable --now nginx php8.4-fpm postgresql redis-server
 
+<br/><br/>
 ### Server Tunning
 **Database tunning and Unix socket configuration:**
 Use the following page to get the appropiate configuration acording with your hardware specs. [https://pgtune.leopard.in.ua/](https://pgtune.leopard.in.ua/)
@@ -321,6 +323,7 @@ Add the cronjob:
     # Redis Optimization
     5 1 * * * /opt/nextconf/redis-optimization.sh
 
+<br/>
 **PHP-FPM Tunning:**
 Edit/Add if missing the recommended configuration for Nextcloud in `/etc/php/8.4/fpm/php.ini`
 
@@ -363,6 +366,7 @@ Save the files and apply the configuration with:
 
     sudo systemctl restart php8.4-fpm
 
+<br/><br/>
 ### Configuring NGINX:
 I included in this repository a Nginx configuration file based in the Nextcloud manual and notify_push requirements, you can choose the http file or the https variant, for the https variant you can adapt it if you already have your own certificate, or read this [guide](https://github.com/JMarcosHP/Nextcloud-Guide/blob/main/extras/proxy-config.md#nextcloud-configuration) if you want to selfhost it using Nginx Proxy Manager later.
 
@@ -394,6 +398,7 @@ Check syntax and reload nginx:
     sudo nginx -t
     sudo systemctl reload nginx
 
+<br/><br/>
 ### Nextcloud Server Setup:
 Create the Nextcloud database and user:
 
@@ -419,7 +424,7 @@ Download & extract Nextcloud server:
     sudo mkdir /mnt/ncdata/skeleton
     sudo chown -R www-data:www-data /mnt/ncdata/skeleton
 
-
+<br/><br/>
 ### Begin the Nextcloud installation
 Open your web browser and go to: http://[LXC_EXTERNAL_IP]
 
