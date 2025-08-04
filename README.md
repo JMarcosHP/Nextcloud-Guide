@@ -312,7 +312,7 @@ Clone this repository and add a cronjob with the script:
 
     git clone https://github.com/JMarcosHP/Nextcloud-Guide
     sudo cp -r Nextcloud-Guide/nextconf /opt
-    cd /opt/nextconf/
+    cd /opt/nextconf/redis
 
 Edit `redis-optimization.sh` and set your redis password:
 
@@ -326,51 +326,70 @@ Add the cronjob:
 
     sudo crontab -e
     # Redis Optimization
-    5 1 * * * /opt/nextconf/redis-optimization.sh
+    5 1 * * * /opt/nextconf/redis/redis-optimization.sh
 
 <br/>
 
 **PHP-FPM Tunning:**
 
-Edit/Add if missing the recommended configuration for Nextcloud in `/etc/php/8.4/fpm/php.ini`
+This repository includes two file templates for PHP configuration to facilitate migration over versions.
+
+For the main configuration, check the file `nextcloud.ini` and set your redis password, adjust or add another configuration as needed:
+
+    sudo nano /opt/nextconf/php/nextcloud.ini
+    
+    session.save_path = "unix:///run/redis/redis-server.sock?auth=yourredispassword&database=1" ; Make sure your password doesn't contain "&" character as it's reserved to indicate the database index. 
+    ...
+
+The main configuration template provides the following:
 
     output_buffering = off
     max_execution_time = 86400
-    default_socket_timeout = 86400 # Always set the same value of max_execution_time
-    memory_limit = 1024M # Adjust if you need more.
-    post_max_size = 16G # Adjust if you need more.
-    upload_max_filesize = 16G # Always set the same value of post_max_size
+    default_socket_timeout = 86400 ; Always set the same value of max_execution_time
+    memory_limit = 1024M ; Adjust if you need more.
+    post_max_size = 16G ; Adjust if you need more.
+    upload_max_filesize = 16G ; Always set the same value of post_max_size
     session.save_handler = redis
-    session.save_path = "unix:///run/redis/redis-server.sock?auth=yourredispassword&database=1" # Make sure your password doesn't contain "&" character as it's reserved to indicate the database index. 
+    session.save_path = "unix:///run/redis/redis-server.sock?auth=yourredispassword&database=1" ; Make sure your password doesn't contain "&" character as it's reserved to indicate the database index. 
     session.serialize_handler = igbinary
     redis.session.locking_enabled = 1
     redis.session.lock_retries = -1
     redis.session.lock_wait_time = 10000
-    opcache.enable=1
-    opcache.jit=1255
+    opcache.enable = 1
+    opcache.jit = 1255
     opcache.jit_buffer_size=8M
-    opcache.memory_consumption=256
-    opcache.interned_strings_buffer=64
-    opcache.max_accelerated_files=10000
-    opcache.revalidate_freq=2
-    opcache.save_comments=1
+    opcache.memory_consumption = 256
+    opcache.interned_strings_buffer = 64
+    opcache.max_accelerated_files = 10000
+    opcache.revalidate_freq = 60
+    opcache.save_comments = 1
     apc.serializer = igbinary
     apc.shm_size = 128M
+<br/>
 
-Execute the php-fpm-autocalculation to get the appropiate values for your hardware:
+After you ajusted your configuration, copy the file to the PHP folder:
 
-    cd /opt/nextconf
+    sudo cp -r /opt/nextconf/php/nextcloud.ini /etc/php/8.4/mods-available
+
+<br/>
+
+For the PHP-FPM pool configuration, first execute the `php-fpm-autocalculation` script to get the appropiate values for your hardware:
+
+    cd /opt/nextconf/php
     sudo chmod +x php-fpm-autocalculation.sh
     ./php-fpm-autocalculation.sh
 
-Then select an option and set the configuration to `/etc/php/8.4/fpm/pool.d/www.conf`
-And uncomment this line:
+Then select an option and set these values to the `z-nextcloudpool.conf` template:
 
-    ;env[PATH] = /usr/local/bin:/usr/bin:/bin
+    sudo nano /opt/nextconf/php/z-nextcloudpool.conf
 
+Copy the file to the `pool.d/` folder:
 
-Save the files and apply the configuration with:
+    sudo cp -r /opt/nextconf/php/z-nextcloudpool.conf /etc/php/8.4/fpm/pool.d
 
+Finally apply the configuration:
+
+    sudo phpenmod -v 8.4 -s fpm nextcloud
     sudo systemctl restart php8.4-fpm
 
 <br/><br/>
@@ -384,11 +403,11 @@ Disable Nginx welcome page:
 
 Copy the nginx file:
 
-    sudo cp -r /opt/nextconf/nextcloud-http.conf /etc/nginx/sites-available
+    sudo cp -r /opt/nextconf/nginx/nextcloud-http.conf /etc/nginx/sites-available
 
 Or
 
-    sudo cp -r /opt/nextconf/nextcloud-https.conf /etc/nginx/sites-available
+    sudo cp -r /opt/nextconf/nginx/nextcloud-https.conf /etc/nginx/sites-available
 
 For the https variant.
 
@@ -482,11 +501,11 @@ Then open your LXC terminal and add the cronjob:
     
     Optional background cronjobs provided by this repository
     # Notify Maintenance Mode
-    0 0 * * * bash /opt/nextconf/maintenance-notify.sh
+    0 0 * * * bash /opt/nextconf/cron/maintenance-notify.sh
     # Enable Maintenance mode
-    0 1 * * * bash /opt/nextconf/set-maintenance.sh on
+    0 1 * * * bash /opt/nextconf/cron/set-maintenance.sh on
     # Disable Maintenance mode
-    0 6 * * * bash /opt/nextconf/set-maintenance.sh off
+    0 6 * * * bash /opt/nextconf/cron/set-maintenance.sh off
 
 <br/><br/>
 For the email configuration, you can use your own gmail account following this [video](https://www.youtube.com/watch?v=7NqL9ccYOlk&t).
@@ -640,7 +659,7 @@ Install the notify_push app with:
 
 Then copy the systemd service unit in `/etc/systemd/system/notify_push.service` provided by this repository:
 
-    sudo cp -r /opt/nextconf/notify_push.service /etc/systemd/system/
+    sudo cp -r /opt/nextconf/notify/notify_push.service /etc/systemd/system/
 
 *NOTE: If you used the Nginx configuration of this repository you don't need to edit it, because already has the required proxy_pass location for notifications. Only change the systemd unit if you are using https.*
 
@@ -667,7 +686,7 @@ Finally restart Nginx and PHP:
 
 This repository includes a script to test notifications:
 
-    cd /opt/nextconf
+    cd /opt/nextconf/cron
     sudo chmod +x maintenance-notify.sh
     sudo -u www-data ./maintenance-notify.sh
 
@@ -681,11 +700,11 @@ Install the previews app:
 
 Add the cronjob:
 
-    sudo chmod +x /opt/nextconf/previews.sh
+    sudo chmod +x /opt/nextconf/cron/previews.sh
     sudo crontab -u www-data -e
     
     # Nextcloud Previews
-    */5 * * * * /opt/nextconf/previews.sh
+    */5 * * * * /opt/nextconf/cron/previews.sh
 
 <br/><br/>
 ### Memories app setup
