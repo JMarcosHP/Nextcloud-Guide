@@ -38,7 +38,7 @@ Add OnlyOffice repository:
     echo "deb [signed-by=/etc/apt/trusted.gpg.d/onlyoffice.gpg] https://download.onlyoffice.com/repo/debian squeeze main" | sudo tee /etc/apt/sources.list.d/onlyoffice.list
     sudo apt update
 
-Configure debconf-selections for the server:
+Configure debconf-set-selections for the server:
 
     echo onlyoffice-documentserver onlyoffice/ds-port select 8081 | sudo debconf-set-selections # We will use 8081 port for webui. (See OO port list).
     echo onlyoffice-documentserver onlyoffice/db-host string /var/run/postgresql | sudo debconf-set-selections
