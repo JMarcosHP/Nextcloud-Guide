@@ -1,7 +1,7 @@
 # How to upgrade Nextcloud
 **Table of Contents:**
- + [Why upgrade Nextcloud?](#why-upgrade-php)
- + [When to upgrade to a newer version?](#when-to-migrate-to-a-newer-version)
+ + [Why upgrade Nextcloud?](#why-upgrade-nextcloud)
+ + [When to upgrade to a newer version?](#when-to-upgrade-to-a-newer-version)
  + [Approaching Upgrades](#approaching-upgrades)
  + [Guide](#guide)
 	+ [STEP 1](#step-1)
@@ -58,6 +58,7 @@ Make a snapshot of your LXC Container, if anything goes wrong, just restore the 
 ### STEP 2 (Optional):
 
 **PREREQUISITES**
+
 If you are upgrading to a new major release, please check the [Nextcloud Admin Manual](https://docs.nextcloud.com/server/latest/admin_manual/release_notes/index.html) for critical/breaking changes in the stack like web server, PHP, database and Nextcloud configurations. Select your desired release and make the necessary adjustements to your server before the upgrade.
 
 ### STEP 3:
@@ -75,12 +76,15 @@ Perform the upgrade:
 ![../_images/updater-cli-3-running-step.png](https://docs.nextcloud.com/server/latest/admin_manual/_images/updater-cli-3-running-step.png)
 Verify the information that is shown and enter “Y” to start the update.
 
+<br/><br/><br/>
 ![../_images/updater-cli-4-failed-step.png](https://docs.nextcloud.com/server/latest/admin_manual/_images/updater-cli-4-failed-step.png)
 In case an error happens or the check failed the updater stops processing and gives feedback. You can now try to solve the problem and re-run the updater command. This will continue the update and re-run the failed step. It will not re-run the previous succeeded steps.
 
+<br/><br/><br/>
 ![../_images/updater-cli-6-run-command.png](https://docs.nextcloud.com/server/latest/admin_manual/_images/updater-cli-6-run-command.png)
 Once all steps are executed the updater will ask you a final question: “Should the “occ upgrade” command be executed?”. This allows you to directly execute the command line based upgrade procedure (`occ  upgrade`). Select "yes" to finish the upgrade.
 
+<br/><br/><br/>
 ![../_images/updater-cli-7-maintenance.png](https://docs.nextcloud.com/server/latest/admin_manual/_images/updater-cli-7-maintenance.png)
 Once the  `occ  upgrade`  is done you get asked if the maintenance mode should be kept active, type "N".
 
