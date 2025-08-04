@@ -258,6 +258,7 @@ Enable and Start the necessary services:
 <br/><br/>
 ### Server Tunning
 **Database tunning and Unix socket configuration:**
+
 Use the following page to get the appropiate configuration acording with your hardware specs. [https://pgtune.leopard.in.ua/](https://pgtune.leopard.in.ua/)
 
 Now edit `/etc/postgresql/17/main/postgresql.conf` and set the values given by the page.
@@ -285,7 +286,10 @@ Restart postgresql:
 
     sudo systemctl restart postgresql
 
+<br/>
+
 **Redis tunning and Unix socket configuration:**
+
 Edit and set the following configuration in `/etc/redis/redis.conf`
 
     port 0
@@ -324,7 +328,9 @@ Add the cronjob:
     5 1 * * * /opt/nextconf/redis-optimization.sh
 
 <br/>
+
 **PHP-FPM Tunning:**
+
 Edit/Add if missing the recommended configuration for Nextcloud in `/etc/php/8.4/fpm/php.ini`
 
     output_buffering = off
