@@ -53,7 +53,7 @@ If any of the above repositories are not yet available for the next major releas
 ### STEP 3:
 Enable maintenance mode in Nextcloud.
 
-    sudo -u www-data php -f /opt/nextconf/maintenance-mode.sh --on
+    sudo -u www-data php -f /opt/nextconf/cron/maintenance-mode.sh --on
 
 ### STEP 4:
 Apply pending updates on your current system.
@@ -123,7 +123,7 @@ Restart the container.
 ### STEP 12:
 Disable maintenance mode in Nextcloud and check if everything is correct, if not, check the Nextcloud logs in `/var/www/nextcloud/data/nextcloud.log`.
 
-    sudo -u www-data php -f /opt/nextconf/maintenance-mode.sh --off
+    sudo -u www-data php -f /opt/nextconf/cron/maintenance-mode.sh --off
 
 ### STEP 13 (Optional):
 Modernize your sources to the new format.
