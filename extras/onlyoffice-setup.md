@@ -82,10 +82,13 @@ Start the example service:
 Now let's test the Onlyoffice Docs server to see if everything is working:
 In a browser go to: http://[LXC_EXTERNAL_IP]:8081
 
-[IMG-WELCOME]
+<img width="1873" height="954" alt="Captura desde 2025-07-31 19-46-29" src="https://github.com/user-attachments/assets/fbb99d0d-53ba-4dc8-a3e4-9f6882a46f54" />
+
 You will see the welcome page, let's try the example and create some documents.
 
-[IMG-TESTING]
+<img width="1873" height="997" alt="Captura desde 2025-07-31 19-46-56" src="https://github.com/user-attachments/assets/58959ce5-fd1f-4108-9edb-d2c8746b0e1a" />
+<img width="1873" height="997" alt="Captura desde 2025-07-31 19-46-45" src="https://github.com/user-attachments/assets/3548d2cc-1957-46ea-bb98-e4b31bdc7a51" />
+
 Once you tested the server, stop the ds-example service:
 
     sudo systemctl disable --now ds-example
@@ -115,7 +118,8 @@ Copy your token and header string.
 
 Now go to the Onlyoffice connector settings in Nextcloud and set the following configuration:
 
-[IMG-CONFIG]
+<img width="1080" height="764" alt="Captura desde 2025-07-31 19-52-08 (Editado)" src="https://github.com/user-attachments/assets/322a70cd-efe6-4080-a2cd-3a887750c1a9" />
+
 
 For a local instance set the url like:
 
