@@ -378,7 +378,7 @@ I included in this repository a Nginx configuration file based in the Nextcloud 
 
 Disable Nginx welcome page:
 
-    sudo rm /etc/nginx/sites-enabled/default
+    sudo rm -r /etc/nginx/sites-enabled/default
 
 
 Copy the nginx file:
