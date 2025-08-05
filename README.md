@@ -44,7 +44,7 @@
 	+ [Creating the LXC Container](#creating-the-lxc-container)
 	+ [Container Setup](#container-setup)
 	+ [Preparing the necessary stuff](#preparing-the-necessary-stuff)
-	+ [Server Tunning](#server-tunning)
+	+ [Server Tuning](#server-tuning)
 	+ [Configuring NGINX](#configuring-nginx)
 	+ [Nextcloud Server Setup](#nextcloud-server-setup)
 	+ [Begin the Nextcloud installation](#begin-the-nextcloud-installation)
@@ -257,8 +257,8 @@ Enable and Start the necessary services:
     sudo systemctl enable --now nginx php8.4-fpm postgresql redis-server
 
 <br/><br/>
-### Server Tunning
-**Database tunning and Unix socket configuration:**
+### Server Tuning
+**Database tuning and Unix socket configuration:**
 
 Use the following page to get the appropiate configuration acording with your hardware specs. [https://pgtune.leopard.in.ua/](https://pgtune.leopard.in.ua/)
 
@@ -289,7 +289,7 @@ Restart postgresql:
 
 <br/>
 
-**Redis tunning and Unix socket configuration:**
+**Redis tuning and Unix socket configuration:**
 
 Edit and set the following configuration in `/etc/redis/redis.conf`
 
@@ -330,7 +330,7 @@ Add the cronjob:
 
 <br/>
 
-**PHP-FPM Tunning:**
+**PHP-FPM Tuning:**
 
 This repository includes two file templates for PHP configuration to facilitate migration over versions.
 
