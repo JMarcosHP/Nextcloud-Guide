@@ -8,6 +8,7 @@ set -euo pipefail
 set +e
 PF_NAME=$(ps axc | grep -Eo 'php-fpm[0-9]+\.[0-9]+' | head -n1)
 PF_STATUS=$?
+set -e
 if [[ -z $PF_NAME || PF_STATUS -ne 0 ]]; then
   echo "Error: could not find php-fpm process via ps axc" >&2
   exit 1
