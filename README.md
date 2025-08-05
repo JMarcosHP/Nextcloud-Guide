@@ -57,7 +57,7 @@
 ## GUIDE
 
 ### Preparing the storage
-For this guide we will use an unprivileged LXC, if you don't know how to handle the permissions and ownership, please read this explanation before starting.
+For this guide we will use an unprivileged LXC, if you don't know how to handle the permissions and ownership, please read this [explanation](https://github.com/JMarcosHP/Nextcloud-Guide/blob/main/extras/lxc-ownership-explanation.md) before starting.
 
 In this case I'll use a ZFS dataset created on an existing pool.
 To create one:
