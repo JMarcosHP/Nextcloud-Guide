@@ -46,18 +46,18 @@ fi
 
 # 5) Print configuration snippets
 cat <<EOF
-; ----- PHP-FPM tuning -----
-; Detected process      : $PF_NAME
-; Avg memory per process: ${AVG_PROC_MB} MB
+; ------------- PHP-FPM tuning -------------
+; Detected process       : $PF_NAME
+; Avg memory per process : ${AVG_PROC_MB} MB
 
-; === Dynamic mode (variable load) ===
+; ====== Dynamic mode (variable load) ======
 pm = dynamic
 pm.max_children      = $MAX_CHILDREN
 pm.start_servers     = $START_SERVERS
 pm.min_spare_servers = $PM_MIN_SPARE
 pm.max_spare_servers = $PM_MAX_SPARE
 
-; === Static mode (high performance) ===
+; ===== Static mode (high performance) =====
 pm = static
 pm.max_children      = $MAX_CHILDREN
 ; In static mode all children spawn at startup, no spare settings.
