@@ -383,13 +383,13 @@ For the PHP-FPM pool configuration, first execute the `php-fpm-autocalculation` 
     sudo chmod +x php-fpm-autocalculation.sh
     ./php-fpm-autocalculation.sh
 
-Then select an option and set these values to the `z-nextcloudpool.conf` template:
+Then select an option and set these values to the `zz-nextcloudpool.conf` template:
 
-    sudo nano /opt/nextconf/php/z-nextcloudpool.conf
+    sudo nano /opt/nextconf/php/zz-nextcloudpool.conf
 
 Copy the file to the `pool.d/` folder:
 
-    sudo cp -r /opt/nextconf/php/z-nextcloudpool.conf /etc/php/8.4/fpm/pool.d
+    sudo cp -r /opt/nextconf/php/zz-nextcloudpool.conf /etc/php/8.4/fpm/pool.d
 
 Finally apply the configuration:
 
