@@ -78,7 +78,7 @@ Then load the configuration, restart the new PHP service and see if it's running
     sudo systemctl restart phpX.Y-fpm.service
     sudo systemctl status phpX.Y-fpm.service
 
-However, if you don't have these templates, you can download the nextcloud.ini template [here](https://github.com/JMarcosHP/Nextcloud-Guide/blob/main/nextconf/nextcloud.ini), and the zz-nextcloudpool.conf [here](https://github.com/JMarcosHP/Nextcloud-Guide/blob/main/nextconf/zz-nextcloudpool.conf) for the pool.
+However, if you don't have these templates, you can download the nextcloud.ini template [here](https://github.com/JMarcosHP/Nextcloud-Guide/blob/main/nextconf/php/nextcloud.ini), and the zz-nextcloudpool.conf [here](https://github.com/JMarcosHP/Nextcloud-Guide/blob/main/nextconf/php/zz-nextcloudpool.conf) for the pool.
 Adjust them with your current values and apply the configuration.
 
 ### STEP 6:
