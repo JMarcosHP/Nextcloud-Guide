@@ -5,8 +5,11 @@
 set -euo pipefail
 
 # 1) Detect php-fpm process name via ps
+set +e
 PF_NAME=$(ps axc | grep -Eo 'php-fpm[0-9]+\.[0-9]+' | head -n1)
-if [[ -z $PF_NAME ]]; then
+PF_STATUS=$?
+
+if [[ -z $PF_NAME || PF_STATUS -ne 0 ]]; then
   echo "Error: could not find php-fpm process via ps axc" >&2
   exit 1
 fi
@@ -49,14 +52,14 @@ cat <<EOF
 
 ; === Dynamic mode (variable load) ===
 pm = dynamic
-pm.max_children     = $MAX_CHILDREN
-pm.start_servers    = $START_SERVERS
-pm.min_spare_servers= $PM_MIN_SPARE
-pm.max_spare_servers= $PM_MAX_SPARE
+pm.max_children      = $MAX_CHILDREN
+pm.start_servers     = $START_SERVERS
+pm.min_spare_servers = $PM_MIN_SPARE
+pm.max_spare_servers = $PM_MAX_SPARE
 
 ; === Static mode (high performance) ===
 pm = static
-pm.max_children     = $MAX_CHILDREN
+pm.max_children      = $MAX_CHILDREN
 ; In static mode all children spawn at startup, no spare settings.
 ; Static mode provides better performance but uses more resources.
 EOF
