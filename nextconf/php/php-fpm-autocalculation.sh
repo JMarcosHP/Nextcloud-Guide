@@ -15,8 +15,11 @@ if [[ -z $PF_NAME || PF_STATUS -ne 0 ]]; then
 fi
 
 # 2) Compute average RSS per process (KB → MB)
+set +e
 AVG_RSS_KB=$(ps --no-headers -o rss -C "$PF_NAME" | awk '{ sum+=$1; count++ } END { print (count>0 ? int(sum/count) : 0) }')
-if (( AVG_RSS_KB < 1 )); then
+RSS_STATUS=$?
+set -e
+if (( RSS_STATUS != 0 || AVG_RSS_KB < 1 )); then
   echo "Error: no php-fpm workers found for $PF_NAME" >&2
   exit 1
 fi
