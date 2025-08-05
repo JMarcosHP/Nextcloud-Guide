@@ -350,7 +350,7 @@ The main configuration template provides the following:
     post_max_size = 16G ; Adjust if you need more.
     upload_max_filesize = 16G ; Always set the same value of post_max_size
     session.save_handler = redis
-    session.save_path = "unix:///run/redis/redis-server.sock?auth=yourredispassword&database=1" ; Make sure your password doesn't contain "&" character as it's reserved to indicate the database index. 
+    session.save_path = "unix:///run/redis/redis-server.sock?auth=yourredispassword&database=1" ; Make sure your password doesn't contain "&" character as it's reserved to indicate the database index.
     session.serialize_handler = igbinary
     session.gc_maxlifetime = 86400
     redis.session.locking_enabled = 1
@@ -369,6 +369,12 @@ The main configuration template provides the following:
     apc.serializer = igbinary
     apc.shm_size = 128M
     igbinary.compact_strings = On
+
+    ; High failure protection
+    emergency_restart_threshold = 10
+    emergency_restart_interval = 1m
+    process_control_timeout = 10s
+
 <br/>
 
 After you ajusted your configuration, copy the file to the PHP folder:
