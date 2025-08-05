@@ -51,6 +51,6 @@ This way, you can create a user with different name but maintaining the same uid
 You can read more about all of this [here](https://blog.kye.dev/proxmox-zfs-mounts).
 Other guide about unix ownership [here](https://www.youtube.com/watch?v=CFhlg6qbi5M).
 
-Explaining all of this, lets start.
+Explaining all of this, let's start.
 
 
