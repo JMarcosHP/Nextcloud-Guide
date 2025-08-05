@@ -60,6 +60,8 @@ pm.max_spare_servers = $PM_MAX_SPARE
 ; ===== Static mode (high performance) =====
 pm = static
 pm.max_children      = $MAX_CHILDREN
-; In static mode all children spawn at startup, no spare settings.
-; Static mode provides better performance but uses more resources.
+; In static mode all children spawn at 
+; startup, no spare settings.
+; Static mode provides better performance,
+; but uses more resources.
 EOF
