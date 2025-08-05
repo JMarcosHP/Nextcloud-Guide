@@ -48,6 +48,23 @@ Change `X.Y` to the desired PHP version, please don't use the metapackages:
     sudo apt install -y phpX.Y-{fpm,pgsql,gd,curl,mbstring,xml,zip,intl,bcmath,gmp,imagick,redis,apcu,smbclient,ldap,imap}
 
 ### STEP 4:
+Set the newer PHP as default.
+Select the corresponding `phpX.Y` version in `update-alternatives`
+This lets you switch the php socket symlink to the new version:
+
+    sudo update-alternatives --config php-fpm.sock
+
+And this to set the default php binary:
+
+    sudo update-alternatives --config php
+
+Stop and disable the old phpX.X-fpm service:
+
+    sudo systemctl disable --now phpX.X-fpm.service # Adjust to the old PHP version
+
+If you want to keep many PHP versions, you will need to adjust the socket name in the dedicated `zz-nextcloudpool.conf` of every PHP version to not conflict the listening of every version. Nginx configuration is needed only if you have set a manual `phpX.Y-fpm.sock` or `phpX.Y-fpm-nextcloud.sock` for `php-handler`.
+
+### STEP 5:
 Migrate configuration.
 
 This repository provides configuration templates for PHP-FPM and pools, if you already configured these templates simply copy them to your new PHP version folder:
@@ -63,19 +80,6 @@ Then load the configuration, restart the new PHP service and see if it's running
 
 However, if you don't have these templates, you can download the nextcloud.ini template [here](https://github.com/JMarcosHP/Nextcloud-Guide/blob/main/nextconf/nextcloud.ini), and the zz-nextcloudpool.conf [here](https://github.com/JMarcosHP/Nextcloud-Guide/blob/main/nextconf/zz-nextcloudpool.conf) for the pool.
 Adjust them with your current values and apply the configuration.
-
-### STEP 5:
-Set the newer PHP as default.
-Select the corresponding `phpX.Y` version in `update-alternatives`
-This lets you switch the php socket symlink to the new version:
-
-    sudo update-alternatives --config php-fpm.sock
-
-And this to set the default php binary:
-
-    sudo update-alternatives --config php
-
-You can keep many PHP versions as you need. Nginx configuration is needed only if you have set a manual `phpX.Y-fpm.sock` for `php-handler`.
 
 ### STEP 6:
 Disable the maintenance mode in Nextcloud and check if the new PHP version installed is detected and working as expected, if not, double check your PHP settings and the default socket and binary used. 
