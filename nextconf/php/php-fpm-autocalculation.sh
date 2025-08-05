@@ -49,23 +49,36 @@ fi
 
 # 5) Print configuration snippets
 cat <<EOF
-; ------------- PHP-FPM tuning -------------
+; ------------------- PHP-FPM tuning --------------------
 ; Detected process       : $PF_NAME
 ; Avg memory per process : ${AVG_PROC_MB} MB
 
-; ====== Dynamic mode (variable load) ======
+; ====== Dynamic mode (Balanced, variable traffic) ======
 pm = dynamic
-pm.max_children      = $MAX_CHILDREN
-pm.start_servers     = $START_SERVERS
-pm.min_spare_servers = $PM_MIN_SPARE
-pm.max_spare_servers = $PM_MAX_SPARE
+pm.max_children         = $MAX_CHILDREN
+pm.start_servers        = $START_SERVERS
+pm.min_spare_servers    = $PM_MIN_SPARE
+pm.max_spare_servers    = $PM_MAX_SPARE
 
-; ===== Static mode (high performance) =====
+; Offers a balance between resource efficiency
+: and responsiveness, adapting to varying traffic
+; levels.
+
+; ======= Ondemand mode (Efficient, low traffic) ========
+pm = ondemand
+pm.max_children         = $MAX_CHILDREN
+pm.process_idle_timeout = 10s
+
+; Highly resource-efficient, as processes are
+; only active when needed, minimizing memory
+; consumption for low-traffic sites.
+
+; ======= Static mode (Performance, high traffic) =======
 pm = static
-pm.max_children      = $MAX_CHILDREN
+pm.max_children         = $MAX_CHILDREN
 
-; In static mode all children spawn at 
-; startup, no spare settings.
-; Static mode provides better performance,
-; but uses more resources.
+; Provides the fastest response times as
+; processes are always ready to handle requests,
+; but can consume more memory, recommended for 
+; high-traffic sites.
 EOF
