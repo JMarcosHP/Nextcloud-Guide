@@ -352,19 +352,23 @@ The main configuration template provides the following:
     session.save_handler = redis
     session.save_path = "unix:///run/redis/redis-server.sock?auth=yourredispassword&database=1" ; Make sure your password doesn't contain "&" character as it's reserved to indicate the database index. 
     session.serialize_handler = igbinary
+    session.gc_maxlifetime = 86400
     redis.session.locking_enabled = 1
     redis.session.lock_retries = -1
     redis.session.lock_wait_time = 10000
     opcache.enable = 1
+    opcache.enable_cli = 1
     opcache.jit = 1255
-    opcache.jit_buffer_size=8M
+    opcache.jit_buffer_size = 8M
     opcache.memory_consumption = 256
     opcache.interned_strings_buffer = 64
     opcache.max_accelerated_files = 10000
-    opcache.revalidate_freq = 60
+    opcache.revalidate_freq = 2
+    opcache.validate_timestamps = 1
     opcache.save_comments = 1
     apc.serializer = igbinary
     apc.shm_size = 128M
+    igbinary.compact_strings = On
 <br/>
 
 After you ajusted your configuration, copy the file to the PHP folder:
