@@ -91,7 +91,7 @@ Select the Debian template from your storage.<br/><br/><br/>
 
 <img width="724" height="537" alt="Captura desde 2025-07-30 12-37-52" src="https://github.com/user-attachments/assets/42bc5290-42e6-4ca3-8b87-7eba8daf743b" />
 
-Choose the storage where the LXC will be saved, set 64GB for disk size, for mount options select: discard (only if your storage is SSD),noatime,lazytime.<br/><br/><br/>
+Choose the storage where the LXC will be saved, set 64GB for disk size, for mount options select: discard (only if your storage is SSD), noatime, lazytime.<br/><br/><br/>
 
 <img width="724" height="537" alt="Captura desde 2025-07-30 12-39-11" src="https://github.com/user-attachments/assets/e52ca95b-f8b4-4f94-a6ca-85b43dbdc7d4" />
 
@@ -103,7 +103,7 @@ Set at least 4GB of ram and 1GB for swap.<br/><br/><br/>
 
 <img width="724" height="537" alt="Captura desde 2025-07-30 12-39-44" src="https://github.com/user-attachments/assets/26907634-c803-4d7c-a94e-220da2a503f5" />
 
-For network, assign a static IPV4 address with its gateway. If your ISP provides a fully working IPv6 select SLAAC, if not, just leave it static.<br/><br/><br/>
+For network, assign a static IPv4 address with its gateway. If your ISP provides a fully working IPv6 select SLAAC, if not, just leave it static.<br/><br/><br/>
 
 <img width="724" height="537" alt="Captura desde 2025-07-30 12-41-37" src="https://github.com/user-attachments/assets/5580b9f0-ff75-4449-a68f-bba56b60bcd8" />
 
