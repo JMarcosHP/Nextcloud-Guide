@@ -72,7 +72,7 @@ Set your Nextcloud instance to maintenance mode:
 
 Perform the upgrade:
 
-    sudo -E -u www-data php  /var/www/nextcloud/updater/updater.phar
+    sudo -E -u www-data php /var/www/nextcloud/updater/updater.phar
 
 ![../_images/updater-cli-3-running-step.png](https://docs.nextcloud.com/server/latest/admin_manual/_images/updater-cli-3-running-step.png)
 Verify the information that is shown and enter “Y” to start the update.
