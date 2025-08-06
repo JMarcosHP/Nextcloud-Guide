@@ -39,7 +39,7 @@ Make a snapshot of your LXC Container, if anything goes wrong, just restore the 
 ### STEP 2:
 Enable maintenance mode in Nextcloud.
 
-    sudo -u www-data php -f /opt/nextconf/cron/maintenance-mode.sh --on
+    sudo -E -u www-data /opt/nextconf/cron/maintenance-mode.sh on
 
 ### STEP 3:
 Install the new PHP packages and extensions.
@@ -84,7 +84,7 @@ Adjust them with your current values and apply the configuration.
 ### STEP 6:
 Disable the maintenance mode in Nextcloud and check if the new PHP version installed is detected and working as expected, if not, double check your PHP settings and the default socket and binary used. 
 
-    sudo -u www-data php -f /opt/nextconf/cron/maintenance-mode.sh --off
+    sudo -E -u www-data /opt/nextconf/cron/maintenance-mode.sh off
 
 ### STEP 7 (Optional):
 
