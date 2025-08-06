@@ -185,7 +185,7 @@ Now we will use ncadmin for every command in this guide, or you can stick with t
 
 Install a firewall:
 
-    sudo apt install ufw
+    sudo apt install -y ufw
 
 Allow the required ports in ufw for this setup:
 
@@ -258,10 +258,11 @@ Enable and Start the necessary services:
     sudo systemctl enable --now nginx php8.4-fpm postgresql redis-server
 
 <br/><br/>
+
 ### Server Tuning
 **Database tuning and Unix socket configuration:**
 
-Use the following page to get the appropiate configuration acording with your hardware specs. [https://pgtune.leopard.in.ua/](https://pgtune.leopard.in.ua/)
+Use the following page to get the appropiate configuration acording to your hardware specs and number of connections. [https://pgtune.leopard.in.ua/](https://pgtune.leopard.in.ua/)
 
 Now edit `/etc/postgresql/17/main/postgresql.conf` and set the values given by the page.
 Then proceed editing this lines for the Unix socket:
@@ -335,7 +336,7 @@ Add the cronjob:
 
 This repository includes two file templates for PHP configuration to facilitate migration over versions.
 
-For the main configuration, check the file `nextcloud.ini` and set your redis password, adjust or add another configuration as needed:
+For the main configuration, edit the file `nextcloud.ini` and set your redis password, adjust or add another configuration as needed:
 
     sudo nano /opt/nextconf/php/nextcloud.ini
     
@@ -404,6 +405,7 @@ Finally apply the configuration:
     sudo systemctl restart php8.4-fpm
 
 <br/><br/>
+
 ### Configuring NGINX:
 I included in this repository a Nginx configuration file based in the Nextcloud manual and notify_push requirements, you can choose the http file or the https variant, for the https variant you can adapt it if you already have your own certificate, or read this [guide](https://github.com/JMarcosHP/Nextcloud-Guide/blob/main/extras/proxy-config.md#nextcloud-configuration) if you want to selfhost it using Nginx Proxy Manager later.
 
@@ -436,6 +438,7 @@ Check syntax and reload nginx:
     sudo systemctl reload nginx
 
 <br/><br/>
+
 ### Nextcloud Server Setup:
 Create the Nextcloud database and user:
 
@@ -462,6 +465,7 @@ Download & extract Nextcloud server:
     sudo chown -R www-data:www-data /mnt/ncdata/skeleton
 
 <br/><br/>
+
 ### Begin the Nextcloud installation
 Open your web browser and go to: http://[LXC_EXTERNAL_IP]
 
@@ -487,6 +491,7 @@ Select apps as needed, or click Skip to not install anything.
 And there we go!
 
 <br/><br/>
+
 ### Nextcloud post-installation adjustements:
 Go to the administration settings to see what we need to adjust/fix.
 <img width="1535" height="683" alt="Captura desde 2025-07-31 14-05-27 (Editado)" src="https://github.com/user-attachments/assets/79a2c356-1890-453f-8110-2ac2ec544913" />
@@ -494,8 +499,8 @@ Go to the administration settings to see what we need to adjust/fix.
 <br/><br/><br/>
 Fix database index:
 
-    sudo -u www-data php -f /var/www/nextcloud/occ db:add-missing-indices
-    sudo -u www-data php -f /var/www/nextcloud/occ maintenance:repair --include-expensive
+    sudo -E -u www-data php -f /var/www/nextcloud/occ db:add-missing-indices
+    sudo -E -u www-data php -f /var/www/nextcloud/occ maintenance:repair --include-expensive
 
 <br/><br/>
 Configuring Background Jobs:
@@ -656,8 +661,9 @@ Apply the configuration with:
 If you want to configure the proxy for selfhosting, please check this [guide](https://github.com/JMarcosHP/Nextcloud-Guide/blob/main/extras/proxy-config.md#nextcloud-configuration). 
 
 <br/><br/>
+
 ### Adding Push Notifications support
-First enable notifications, open a browser and login with the admin account.
+First enable notifications, open a web browser and login with the admin account.
 Go to the Administration settings => Notifications
 And set this configuration:
 
@@ -666,13 +672,13 @@ And set this configuration:
 
 Install the notify_push app with:
 
-    sudo -u www-data php -f /var/www/nextcloud/occ app:install notify_push
+    sudo -E -u www-data php -f /var/www/nextcloud/occ app:install notify_push
 
 Then copy the systemd service unit in `/etc/systemd/system/notify_push.service` provided by this repository:
 
     sudo cp -r /opt/nextconf/notify/notify_push.service /etc/systemd/system/
 
-*NOTE: If you used the Nginx configuration of this repository you don't need to edit it, because already has the required proxy_pass location for notifications. Only change the systemd unit if you are using https.*
+*NOTE: If you used the Nginx configuration of this repository you don't need to edit it, because already has the required proxy_pass location for notifications. Only adjust the systemd unit if you are using https.*
 
 Reload Systemd and start the service:
 
@@ -681,11 +687,11 @@ Reload Systemd and start the service:
 
 Configure the app with the correct URL:
 
-    sudo -u www-data php -f /var/www/nextcloud/occ notify_push:setup http://[EXTERNAL LXC IP]/push # Example http://192.168.1.9/push
+    sudo -E -u www-data php -f /var/www/nextcloud/occ notify_push:setup http://[EXTERNAL LXC IP]/push # Example http://192.168.1.9/push
 
 If you already configured your server behind a ssl proxy, simply execute:
 
-    sudo -u www-data php -f /var/www/nextcloud/occ notify_push:setup https://yourdomain.example/push
+    sudo -E -u www-data php -f /var/www/nextcloud/occ notify_push:setup https://yourdomain.example/push
 
 Changes to the systemd unit are not needed in this case. However if you are on full https without proxy or a local https instance then change the systemd unit first.
 
@@ -701,13 +707,14 @@ This repository includes a script to test notifications:
     sudo chmod +x maintenance-notify.sh
     sudo -u www-data ./maintenance-notify.sh
 
-You will see a notification of the browser.
+You will see a notification of the web browser.
 
 <br/><br/>
+
 ### Setup automatic preview generation
 Install the previews app:
 
-    sudo -u www-data php -f /var/www/nextcloud/occ app:install previewgenerator
+    sudo -E -u www-data php -f /var/www/nextcloud/occ app:install previewgenerator
 
 Add the cronjob:
 
@@ -722,11 +729,11 @@ Add the cronjob:
 
 Install the memories app:
 
-    sudo -u www-data php -f /var/www/nextcloud/occ app:install memories
+    sudo -E -u www-data php -f /var/www/nextcloud/occ app:install memories
 
 Download the planet database:
 
-    sudo -u www-data php -f /var/www/nextcloud/occ memories:places-setup
+    sudo -E -u www-data php -f /var/www/nextcloud/occ memories:places-setup
 
 Now go to the configuration page and check if everything is OK.
 
