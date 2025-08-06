@@ -52,6 +52,7 @@
 	+ [Adding Push Notifications support](#adding-push-notifications-support)
 	+ [Setup automatic preview generation](#setup-automatic-preview-generation)
 	+ [Memories app setup](#memories-app-setup)
+	+ [Container deletion](#container-deletion) 
 + [Extras](#extras)
 
 ## GUIDE
@@ -742,6 +743,30 @@ Recommended configuration for memories:
 <img width="1362" height="890" alt="Captura desde 2025-07-31 19-00-39" src="https://github.com/user-attachments/assets/882658ff-fe44-4982-9e83-b18640bb3720" />
 
 (Only with GPU Passthrough, enable VA-API, for nvidia you need to install the corresponding driver with: sudo apt install nvidia-driver)
+
+<br/><br/>
+
+### Container deletion
+
+If you want to delete the container and start from scratch without losing data, first:
+
+Shutdown the container
+
+<img width="367" height="35" alt="Captura desde 2025-08-04 23-55-48" src="https://github.com/user-attachments/assets/71b57c4f-6b2e-4880-bef6-cfed1e9bf9b0" />
+
+<br/><br/><br/>
+
+Go to the container resources configuration, and detach every bind-mounted directories you configured.
+
+<img width="615" height="211" alt="Captura desde 2025-08-04 23-56-59" src="https://github.com/user-attachments/assets/beedfef4-3d19-421d-98df-ffe4148b0aaa" />
+
+<br/><br/><br/>
+
+Delete the container, please only check "Purge from job configurations", never check "Destroy unreferenced disks owned by guest".
+
+<img width="450" height="216" alt="Captura desde 2025-08-04 23-50-21" src="https://github.com/user-attachments/assets/bdc4bec6-948c-4d53-9343-b27665336df7" />
+
+<br/><br/>
 
 ## Extras
 Some useful guides to complement your fresh Nextcloud instance.
