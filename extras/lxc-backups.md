@@ -4,6 +4,14 @@ For this guide is recommended 1 HDD/SSD apart from your main storage to save the
 
 *NOTE: With this backup method, the bind-mounted directories will be excluded from the backup, only the LXC volume will be saved.*
 
+**Table of Contents:**
+ + [Guide](#guide)
+	+ [STEP 1 (Optional)](#step-1-optional)
+	+ [STEP 2](#step-2)
+	+ [STEP 3](#step-3)
+	+ [STEP 4 (Optional)](#step-4-optional)
++ [How to restore a container backup](#how-to-restore-a-container-backup)
+
 ## Guide
 
 ### STEP 1 (Optional):
@@ -67,5 +75,6 @@ Make sure you selected your container ID to create a exclusive backup job schedu
 To restore a container backup, simply select the desired backup file and click in the restore button. You can modify many options before restoring the backup if needed.
 
 <img width="501" height="359" alt="image" src="https://github.com/user-attachments/assets/7ba0f6ba-3ee3-457c-a22f-5d3114b99c53" />
+
 
 
