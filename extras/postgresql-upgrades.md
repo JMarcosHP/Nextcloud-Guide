@@ -40,7 +40,7 @@ Make a snapshot of your LXC Container, if anything goes wrong, just restore the 
 ### STEP 2:
 Enable maintenance mode in Nextcloud.
 
-    sudo -E -u www-data php /opt/nextconf/cron/maintenance-mode.sh on
+    sudo -E -u www-data /opt/nextconf/cron/maintenance-mode.sh on
 
 ### STEP 3:
 Install the new PostgreSQL version and client:
