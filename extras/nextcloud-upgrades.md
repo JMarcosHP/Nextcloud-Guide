@@ -66,7 +66,7 @@ If you are upgrading to a new major release, please check the [Nextcloud Admin M
 
 Set your Nextcloud instance to maintenance mode:
 
-    sudo -u www-data /opt/nextconf/cron/maintenance-mode.sh --on
+    sudo -E -u www-data /opt/nextconf/cron/maintenance-mode.sh on
 
 ### STEP 4:
 
