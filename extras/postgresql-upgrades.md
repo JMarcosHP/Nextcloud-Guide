@@ -40,7 +40,7 @@ Make a snapshot of your LXC Container, if anything goes wrong, just restore the 
 ### STEP 2:
 Enable maintenance mode in Nextcloud.
 
-    sudo -u www-data php -f /opt/nextconf/cron/maintenance-mode.sh --on
+    sudo -E -u www-data php /opt/nextconf/cron/maintenance-mode.sh on
 
 ### STEP 3:
 Install the new PostgreSQL version and client:
@@ -69,7 +69,7 @@ You should see that the old version is down and the latest is running.
 ### STEP 7:
 Disable the maintenance mode in Nextcloud and check if the new PostgreSQL version installed is detected and working as expected. If not, check the Nextcloud logs to see if it has issue trying to connect to the database: `/var/www/nextcloud/data/nextcloud.log`
 
-    sudo -u www-data php -f /opt/nextconf/cron/maintenance-mode.sh --off
+    sudo -E -u www-data /opt/nextconf/cron/maintenance-mode.sh off
 
 ### STEP 8 (Optional):
 Clean old cluster and packages.
