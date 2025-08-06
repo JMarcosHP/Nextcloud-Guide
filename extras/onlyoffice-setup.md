@@ -109,7 +109,7 @@ Now if you enter again in http://[LXC_EXTERNAL_IP]:8081 it will not redirect to 
 Add OnlyOffice support to Nextcloud:
 Install the OnlyOffice connector app.
 
-    sudo -u www-data php -f /var/www/nextcloud/occ app:install onlyoffice
+    sudo -E -u www-data php -f /var/www/nextcloud/occ app:install onlyoffice
 
 Then get your JWT access token with:
 
