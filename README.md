@@ -687,7 +687,8 @@ Reload Systemd and start the service:
 
 Configure the app with the correct URL:
 
-    sudo -E -u www-data php -f /var/www/nextcloud/occ notify_push:setup http://[EXTERNAL LXC IP]/push # Example http://192.168.1.9/push
+    # Example http://192.168.1.9/push
+    sudo -E -u www-data php -f /var/www/nextcloud/occ notify_push:setup http://[EXTERNAL LXC IP]/push 
 
 If you already configured your server behind a ssl proxy, simply execute:
 
