@@ -453,9 +453,6 @@ Create the Nextcloud database and user:
 
 Download & extract Nextcloud server:
 
-    sudo mkdir /var/www
-    sudo chown -R www-data:www-data /var/www
-    sudo chmod -R 755 /var/www
     cd /var/www
     sudo wget https://download.nextcloud.com/server/releases/latest.zip
     sudo unzip latest.zip
