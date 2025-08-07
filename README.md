@@ -512,13 +512,13 @@ Then open your LXC terminal and add the cronjob:
     # Nextcloud Background Jobs
     */5  *  *  *  * php -f /var/www/nextcloud/cron.php
     
-    Optional background cronjobs provided by this repository
+    # Optional background cronjobs provided by this repository
     # Notify Maintenance Mode
     0 0 * * * bash /opt/nextconf/cron/maintenance-notify.sh
     # Enable Maintenance mode
     0 1 * * * bash /opt/nextconf/cron/set-maintenance.sh on
     # Disable Maintenance mode
-    0 6 * * * bash /opt/nextconf/cron/set-maintenance.sh off
+    50 4 * * * bash /opt/nextconf/cron/set-maintenance.sh off
 
 <br/><br/>
 For the email configuration, you can use your own gmail account following this [video](https://www.youtube.com/watch?v=7NqL9ccYOlk&t).
