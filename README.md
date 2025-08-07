@@ -219,7 +219,7 @@ Add the official PostgreSQL repository:
 
 Press enter and then install postgresql-17:
 
-    sudo apt install postgresql-17 postgresql-client-17
+    sudo apt install -y postgresql-17 postgresql-client-17
 
 Install PHP packages:
 
@@ -237,7 +237,7 @@ Install Redis:
 
     sudo apt install -y redis
 
-Other Packages:
+Another required packages:
 
     sudo apt install -y unzip zip wget curl vim ffmpeg git gnupg 7zip net-tools
 
