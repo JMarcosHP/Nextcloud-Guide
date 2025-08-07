@@ -593,7 +593,10 @@ Another adjustements based in the Nextcloud-AIO configuration, pick the ones you
     'versions_retention_obligation' => 'auto, 30',
     'activity_expire_days' => 30,
     'simpleSignUpLink.shown' => false,
-    'files.chunked_upload.max_size' => 104857600,
+    'auth.bruteforce.protection.enabled' => true, // Enable brute force settings
+    'ratelimit.protection.enabled' => true, // Similar to fail2ban
+	'files.chunked_upload.max_size' => 104857600,
+    'files_external_allow_create_new_local' => true,
     'forbidden_filename_characters' => 
     array (
       0 => '<',
