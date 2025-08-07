@@ -507,7 +507,7 @@ Go to basic settings and select Cron.
 
 Then open your LXC terminal and add the cronjob:
 
-     sudo crontab -u www-data -e
+    sudo crontab -u www-data -e
 
     # Nextcloud Background Jobs
     #*/5  *  *  *  * php -f /var/www/nextcloud/cron.php
