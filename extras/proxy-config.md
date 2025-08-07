@@ -52,6 +52,12 @@ Add the following configuration to `/var/www/nextcloud/config/config.php`
     ),
     'overwrite.cli.url' => 'https://yourdomain.example', // Ajust according to your domain.
 
+(Optional) Update your notify_push URL
+
+Reconfigure your notify_push URL to use your public domain:
+
+    sudo -E -u www-data php -f /var/www/nextcloud/occ notify_push:setup https://yourdomain.example/push
+
 Restart Nginx and PHP:
 
     sudo systemctl restart nginx phpX.Y-fpm # Where X.Y is your PHP version.
