@@ -526,7 +526,7 @@ For the email configuration, you can use your own gmail account following this [
 Or if you have a web domain you can use an email provider, I recommend you the free tier of Mailjet. Please check this [guide](https://franzramadhan.dev/blog/01-free-own-domain-email-using-cloudflare-mailjet/) for more details.
 
 Once you got your mailjet credentials you can add it to nextcloud like this:
-<img width="1113" height="477" alt="Captura desde 2025-07-29 22-28-31" src="https://github.com/user-attachments/assets/e1f62ac1-7f76-414b-b983-a5cc8c0fa039" />
+<img width="1113" height="477" alt="Captura desde 2025-07-29 22-28-31" src="https://github.com/user-attachments/assets/c952d8c5-a6e3-4755-8772-1a840e490f4e" />
 
 <br/><br/><br/>
 **Adding redis, memcached and apcu support.**
