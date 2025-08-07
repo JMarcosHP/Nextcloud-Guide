@@ -1,4 +1,4 @@
-# NGINX PROXY MANAGER configuration for selfhosting.
+# NGINX PROXY MANAGER configuration for selfhosting
 **Table of Contents:**
  + [Nextcloud Configuration](#nextcloud-configuration)
  + [OnlyOffice Document Server Configuration](#onlyoffice-document-server-configuration)
