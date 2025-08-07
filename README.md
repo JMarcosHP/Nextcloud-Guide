@@ -510,7 +510,7 @@ Then open your LXC terminal and add the cronjob:
     sudo crontab -u www-data -e
 
     # Nextcloud Background Jobs
-    #*/5  *  *  *  * php -f /var/www/nextcloud/cron.php
+    */5  *  *  *  * php -f /var/www/nextcloud/cron.php
     
     Optional background cronjobs provided by this repository
     # Notify Maintenance Mode
