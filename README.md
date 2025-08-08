@@ -39,6 +39,8 @@
 - At least 4GB Ram free, 4 cores, 64GB free space for the LXC.
 - Integrated or dedicated graphics card for video transcoding, otherwise, stick to ffmpeg and CPU transcoding. (Intel/AMD preferred, but you can install nvidia drivers).
 
+Official Reddit post [here](https://www.reddit.com/r/ProxmoxQA/s/05xDNSNbsy)
+
 **Table of Contents:**
  + [Guide](#guide)
 	+ [Preparing the Storage](#preparing-the-storage)
