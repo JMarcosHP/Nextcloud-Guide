@@ -29,6 +29,7 @@
 - How to upgrade Debian to a newer release.
 - How to upgrade Nextcloud.
 - How to make a LXC Backup in Proxmox.
+- How to add local external storage to LXC/Nextcloud (work in progress).
 
 **This guide assumes you have:**
 - A working Proxmox node.
