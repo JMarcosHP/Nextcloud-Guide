@@ -1,4 +1,4 @@
-# Proxmox Nextcloud bare metal installation guide in Debian LXC
+# Proxmox Nextcloud installation guide in Debian LXC
 
 **This guide covers how to install Nextcloud with the following stack:**
 - Nginx 1.28 (stable branch)
@@ -23,7 +23,7 @@
 
 **Extras:**
 - Selfhost/Proxy/HTTPS/SSL Support with [Nginx Proxy Manager LXC](https://community-scripts.github.io/ProxmoxVE/scripts?id=nginxproxymanager).
-- OnlyOffice DocumentServer 9 (bare metal installation).
+- OnlyOffice Document Server.
 - How to install Adminer for database administration GUI.
 - How to migrate to a newer PHP version.
 - How to migrate to a newer PostgreSQL version.
