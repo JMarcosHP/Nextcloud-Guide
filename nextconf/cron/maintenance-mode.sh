@@ -1,6 +1,6 @@
 #!/bin/bash
 # Script to set Nextcloud in maintenance mode. Needs to run as www-data user.
-# sudo -u www-data
+# sudo -E -u www-data
 # Or set an automated cronjob:
 # sudo crontab -u www-data -e
 

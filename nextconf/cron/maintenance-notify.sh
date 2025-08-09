@@ -1,6 +1,6 @@
 #!/bin/bash
 # Script to send a daily maintenance notification in Nextcloud. Needs to run as www-data user.
-# sudo -u www-data
+# sudo -E -u www-data
 # Or set an automated cronjob:
 # sudo crontab -u www-data -e
 

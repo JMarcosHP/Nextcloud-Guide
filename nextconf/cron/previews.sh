@@ -1,6 +1,6 @@
 #!/bin/bash
 # Script to generate previews in Nextcloud server, requires "previewgenerator" app installed in your server, and needs to run as www-data user.
-# sudo -u www-data
+# sudo -E -u www-data
 # Or set an automated cronjob:
 # sudo crontab -u www-data -e
 
