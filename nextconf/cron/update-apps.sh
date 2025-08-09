@@ -4,7 +4,7 @@
 # Or set an automated cronjob:
 # sudo crontab -u www-data -e
 #
-# Please don't execute this script during maintenance mode operations, as is discouraged by the Nextcloud manual.
+# Please don't execute this script during maintenance mode operations, as it is discouraged by the Nextcloud manual.
 
 php -f /var/www/nextcloud/occ app:update --all
 
