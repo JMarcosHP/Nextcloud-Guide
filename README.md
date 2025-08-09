@@ -525,7 +525,7 @@ Then open your LXC terminal and add the cronjob:
     # Disable Maintenance mode
     50 4 * * * bash /opt/nextconf/cron/set-maintenance.sh off
 
-If you want to setup automatic updates for nextcloud apps, please check [here]()
+If you want to setup automatic updates for nextcloud apps, please check [here](https://github.com/JMarcosHP/Nextcloud-Guide/blob/main/README.md#automatic-updates-for-nextcloud-apps).
 
 <br/><br/>
 For the email configuration, you can use your own gmail account following this [video](https://www.youtube.com/watch?v=7NqL9ccYOlk&t).
