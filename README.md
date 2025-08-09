@@ -19,6 +19,7 @@
 - Mount ZFS disk pool for additional space and Nextcloud data folder.
 - Push notifications support.
 - Automatic preview generation.
+- Automatic updates for Nextcloud apps
 
 **Extras:**
 - Selfhost/Proxy/HTTPS/SSL Support with [Nginx Proxy Manager LXC](https://community-scripts.github.io/ProxmoxVE/scripts?id=nginxproxymanager).
@@ -55,7 +56,8 @@ Official Reddit post [here](https://www.reddit.com/r/ProxmoxQA/s/05xDNSNbsy)
 	+ [Adding Push Notifications support](#adding-push-notifications-support)
 	+ [Setup automatic preview generation](#setup-automatic-preview-generation)
 	+ [Memories app setup](#memories-app-setup)
-	+ [Container deletion](#container-deletion) 
+    + [Automatic updates for Nextcloud apps](#automatic-updates-for-nextcloud-apps)
+	+ [Container deletion](#container-deletion)
 + [Extras](#extras)
 
 ## GUIDE
@@ -513,7 +515,7 @@ Then open your LXC terminal and add the cronjob:
     sudo crontab -u www-data -e
 
     # Nextcloud Background Jobs
-    */5  *  *  *  * php -f /var/www/nextcloud/cron.php
+    */5 * * * * php -f /var/www/nextcloud/cron.php
     
     # Optional background cronjobs provided by this repository
     # Notify Maintenance Mode
@@ -522,6 +524,8 @@ Then open your LXC terminal and add the cronjob:
     0 1 * * * bash /opt/nextconf/cron/set-maintenance.sh on
     # Disable Maintenance mode
     50 4 * * * bash /opt/nextconf/cron/set-maintenance.sh off
+
+If you want to setup automatic updates for nextcloud apps, please check [here]()
 
 <br/><br/>
 For the email configuration, you can use your own gmail account following this [video](https://www.youtube.com/watch?v=7NqL9ccYOlk&t).
@@ -754,6 +758,21 @@ Recommended configuration for memories:
 <img width="1362" height="890" alt="Captura desde 2025-07-31 19-00-39" src="https://github.com/user-attachments/assets/882658ff-fe44-4982-9e83-b18640bb3720" />
 
 (Only with GPU Passthrough, enable VA-API, for nvidia you need to install the corresponding driver with: sudo apt install nvidia-driver)
+
+<br/><br/>
+
+### Automatic updates for Nextcloud apps
+
+If you want to automatically update your installed apps, simply add this cronjob as `www-data` user.
+
+    sudo crontab -u www-data -e
+
+    # Update Nextcloud apps
+	0 5 * * 0 bash /opt/nextconf/cron/update-apps.sh
+
+ In my case I want to update all my apps At 05:00 on Sunday. You can adjust your schedule using the cron [syntax](https://crontab.guru/).
+
+ *NOTE: Please execute this script after maintenance mode operations, as it is discouraged by the Nextcloud [manual and can introduce issues after updates](https://docs.nextcloud.com/server/latest/admin_manual/occ_command.html#run-commands-in-maintenance-mode)*.
 
 <br/><br/>
 
