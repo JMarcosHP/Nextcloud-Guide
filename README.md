@@ -521,9 +521,9 @@ Then open your LXC terminal and add the cronjob:
     # Notify Maintenance Mode
     0 0 * * * bash /opt/nextconf/cron/maintenance-notify.sh
     # Enable Maintenance mode
-    0 1 * * * bash /opt/nextconf/cron/set-maintenance.sh on
+    0 1 * * * bash /opt/nextconf/cron/maintenance-mode.sh on
     # Disable Maintenance mode
-    50 4 * * * bash /opt/nextconf/cron/set-maintenance.sh off
+    50 4 * * * bash /opt/nextconf/cron/maintenance-mode.sh off
 
 If you want to setup automatic updates for nextcloud apps, please check [here](https://github.com/JMarcosHP/Nextcloud-Guide/blob/main/README.md#automatic-updates-for-nextcloud-apps).
 
