@@ -242,6 +242,8 @@ Install Redis:
 
     sudo apt install -y redis
 
+*NOTE: If you want to install a specific version of Redis from this repository, please check [here](https://github.com/redis/redis-debian?tab=readme-ov-file#redis-open-source---install-using-debian-advanced-package-tool-apt).*
+
 Another required packages:
 
     sudo apt install -y unzip zip wget curl vim ffmpeg git gnupg 7zip net-tools
@@ -298,13 +300,37 @@ Restart postgresql:
 
 **Redis tuning and Unix socket configuration:**
 
-Edit and set the following configuration in `/etc/redis/redis.conf`
+This repository provides a custom configuration file to not mess the main configuration of Redis.
 
+The file only sets the necessary configuration for this setup, you can add more as needed.
+
+First we need to create the directory where all custom configuration for Redis will reside:
+
+    sudo mkdir /etc/redis/conf.d
+
+Now Edit and set the following in `/etc/redis/redis.conf` at the end of the file:
+
+    include /etc/redis/conf.d/*.conf
+
+*NOTE: In future major Redis upgrades, APT will prompt you to decide what to do with the configuration files, for this setup, always select "Install the package maintainer's version", and later reapply the `include /etc/redis/conf.d/*.conf` command in the main configuration file of Redis*
+
+<img width="533" height="159" alt="b2ed6237a717c174e92f08b9ecb189aa4191c464" src="https://github.com/user-attachments/assets/0d9d1ef2-ddda-4c0e-962e-770a7e803701" />
+
+<br/><br/>
+
+Set your redis password in the custom configuration file:
+
+    sudo nano /opt/nextconf/redis/custom.conf
+	
     port 0
     unixsocket /run/redis/redis-server.sock
     unixsocketperm 770
     maxclients 10240
     requirepass yourpassword # Set a strong password here
+
+Copy the configuration file to the directory:
+
+    sudo cp -r /opt/nextconf/redis/custom.conf /etc/redis/conf.d
 
 Add the www-data user to redis group:
 
